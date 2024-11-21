@@ -1,13 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>URL 登録サイト</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL登録システム</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div id="root"></div>
-  <script src="app.js"></script>
+    <div class="container">
+        <h1>URL登録システム</h1>
+
+        <!-- エラーメッセージ表示 -->
+        <div id="errorMessage" style="color: red; display: none; margin-bottom: 10px;"></div>
+
+        <!-- URL登録フォーム -->
+        <form id="registerForm">
+            <input type="text" id="urlInput" placeholder="登録するURLを入力" required>
+            <button type="submit">登録</button>
+        </form>
+
+        <!-- URL削除フォーム -->
+        <form id="deleteForm">
+            <div id="urlList" class="url-list"></div>
+            <button type="submit">選択したURLを削除</button>
+        </form>
+
+        <!-- 上位アクセスURL表示 -->
+        <div>
+            <h2>上位アクセスURL</h2>
+            <div id="topUrlList"></div>
+        </div>
+
+        <!-- 最近登録されたURL表示 -->
+        <div>
+            <h2>最近登録されたURL</h2>
+            <div id="recentUrlList"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
 </body>
 </html>
