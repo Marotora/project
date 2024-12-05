@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // 重複していた場合、そのURLを強調表示
             if (data.duplicateIndex !== null) {
                 highlightDuplicateUrl(data.duplicateIndex);
-            }
+             }
         });
     }
 
@@ -163,6 +163,11 @@ document.addEventListener("DOMContentLoaded", function() {
     function highlightDuplicateUrl(duplicateIndex) {
         const urlItems = document.querySelectorAll(".url-item"); // URL項目を取得
         const duplicateItem = urlItems[duplicateIndex]; // 重複した項目を取得
+        
+        // エラーメッセージを表示
+        const errorMessage = document.getElementById("errorMessage");
+        errorMessage.textContent = "このURLはすでに登録されています！"; // 警告文を表示
+        errorMessage.style.display = "block";
 
         // スクロールして重複項目を表示
         duplicateItem.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -173,6 +178,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // 3秒後に点滅クラスを削除
         setTimeout(() => {
             duplicateItem.classList.remove("highlight");
+            errorMessage.style.display = "none"; //メッセージを府表示
         }, 3000);
     }
 });
