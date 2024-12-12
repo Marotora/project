@@ -111,6 +111,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo json_encode($response);
         exit;
     }
+
+        // メモ保存処理
+    if ($_POST['action'] === 'saveMemo' && !empty($_POST['url']) && isset($_POST['memo'])) {
+        $urls = getUrls();
+        foreach ($urls as &$url) {
+            if ($url['url'] === $_POST['url']) {
+                $url['memo'] = $_POST['memo']; // メモを更新
+                break;
+            }
+        }
+        saveUrls($urls);
+
+        header('Content-Type: application/json');
+        echo json_encode(['status' => 'success']);
+        exit;
+    }
 }
 
 // ===== リクエストがGETの場合の処理 =====

@@ -131,12 +131,39 @@ document.addEventListener("DOMContentLoaded", function() {
             dateSpan.classList.add("date-info");
             dateSpan.textContent = `登録日時: ${urlData.date}`;
 
+             // ===== メモ用のテキストエリアを追加 =====
+            const memoInput = document.createElement("textarea"); // メモ入力欄
+            memoInput.classList.add("memo-input"); // メモ入力用のクラス
+            memoInput.placeholder = "メモを入力"; // プレースホルダ
+            memoInput.value = urlData.memo || ""; // 既存のメモを設定
+            memoInput.addEventListener("change", () => saveMemo(urlData.url, memoInput.value)); // メモ変更時に保存処理
+
             // URL項目に要素を追加してリストに追加
             urlItem.appendChild(checkbox);
             urlItem.appendChild(link);
             urlItem.appendChild(dateSpan);
+            urlItem.appendChild(memoInput); // メモを追加
             urlList.appendChild(urlItem);
         });
+    }
+
+        // ===== メモ保存処理をサーバーに送信 =====
+    function saveMemo(url, memo) {
+        const formData = new FormData(); // フォームデータを作成
+        formData.append("action", "saveMemo"); // メモ保存アクションを指定
+        formData.append("url", url); // メモを保存するURL
+        formData.append("memo", memo); // 入力されたメモ
+
+        // サーバーにPOSTリクエストを送信
+        fetch("server.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Memo saved:", data); // 保存成功メッセージを表示
+        })
+        .catch(error => console.error("Error saving memo:", error)); // エラーログ
     }
 
     // ===== 上位アクセスURLを表示エリアに更新 =====

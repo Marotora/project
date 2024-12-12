@@ -4,7 +4,7 @@ body {
 }
 
 .container {
-  max-width: 600px;
+  max-width: 900px;
   margin: 50px auto;
   padding: 20px;
   background-color: #ffffff;
@@ -18,6 +18,7 @@ h1 {
 }
 
 input[type="text"], button {
+  width: 230px;
   padding: 10px;
   margin: 5px;
   border-radius: 5px;
@@ -25,6 +26,7 @@ input[type="text"], button {
 }
 
 button {
+ width: auto;
   background-color: #add8e6;
   cursor: pointer;
 }
@@ -56,18 +58,21 @@ button:hover {
   text-decoration: underline;
 }
 
+.url-item span {
+  padding-right: 60px;
+}
+
+.memo-input {
+  width: 40%;
+  margin-top: 5px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  resize: vertical;
+}
+
+
 /* 他のスタイルはそのまま */
-
-.highlight {
-  animation: blink 0.5s step-end infinite alternate;
-}
-
-@keyframes blink {
-  from { background-color: #ffcccc; }
-  to { background-color: transparent; }
-}
-
-/* 既存のスタイルはそのまま */
 
 .highlight {
   animation: blink 0.5s step-end infinite alternate;
