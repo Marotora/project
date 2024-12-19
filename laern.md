@@ -34,3 +34,16 @@ app.js      ユーザー側が行うURLを登録、削除、それらを表示�
             deleteUrls(){}      選択されたURLを削除する関数
                                 {}の中の内容・・ユーザーが選んだURLをサーバーにPOSTリクエストとして送信し、その後更新されたURLリストを表示します。
 
+
+## 2024_12_19
+### メモ機能の役割
+
+foreach ($urls as &$url) {
+    if ($url['url'] === $_POST['url']) {
+        $url['memo'] = $_POST['memo']; // メモを更新
+        break;
+    }
+}
+
+foreach ループでURLリストの配列を1ずつ確認し$url['url']が送信された$_POST['url']と一致した場合そのURLデータが対象になる。
+$url['memo']というキーを追加して、送信したメモ$_POST['memo']を保存する。
