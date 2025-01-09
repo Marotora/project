@@ -1,6 +1,19 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f8ff;
+  background: linear-gradient(45deg, #a8c8ff, #b3d9f2, #a0d1f7, #c1e0ff);
+  background-size: 600% 600%;
+  animation: gradient 8s ease infinite;
+  height: 100vh;
+  margin: 0;
+}
+
+/* グラデーションのアニメーション */
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 100% 50%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+  100% { background-position: 0% 50%; }
 }
 
 .container {
@@ -81,4 +94,16 @@ button:hover {
 @keyframes blink {
   from { background-color: #ffcccc; }
   to { background-color: transparent; }
+}
+
+button {
+  width: auto;
+  background-color: #add8e6;
+  cursor: pointer;
+  transition: transform 0.3s ease; /* スムーズな変化を加える */
+}
+
+button:hover {
+  background-color: #87ceeb;
+  transform: scale(1.2); /* 10%大きくなる */
 }
